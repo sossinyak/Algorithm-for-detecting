@@ -1,0 +1,285 @@
+seed: 42
+data:
+  dataset: LEVIR-CD
+  data_path: ./data/LEVIR-CD-filtered
+  img_size: 256
+  subset: all
+preprocessing:
+  gaussian:
+    sigma: auto
+    max_sigma: 3.0
+  clahe:
+    enabled: false
+    mode: adaptive
+    clip_limit: 2.0
+    tile_grid_size:
+    - 16
+    - 16
+  radiometric:
+    enabled: false
+    method: quantile
+    channels: bgr
+    num_quantiles: 64
+postprocessing:
+  morphology:
+    closing_kernel: 7
+    opening_kernel: 3
+  min_area: 137
+  auto_area: false
+  fill_holes: false
+  min_rectangularity: null
+segmentation:
+  method: hybrid
+  block_size: 55
+  C: 18
+  kimura_k: 0.18883980967805475
+detection:
+  difference_weight: 0.6894981772890645
+  color_weight: 1.0
+  difference_method: combined
+  madi_window_size: 31
+  madi_color_weight: 0.35
+  use_filter: false
+  use_canny: false
+  edge_detector: canny
+  canny_percentile: 90.0
+  edge_weight: 0.0
+  edge_dilation_iterations: 1
+  fusion_method: diff_only
+  use_multiscale: true
+  multiscale_levels: 3
+  multiscale_weight_decay: 0.6556891480761657
+priors:
+  vegetation:
+    enabled: true
+    exg_threshold: 0.08
+    min_green: 0.18
+    morphology_kernel: 3
+    suppression_factor: 0.21988420547697843
+  building:
+    enabled: true
+    strength: 0.34115090960949834
+    edge_density_kernel: 9
+    shadow_percentile: 25.0
+    shadow_dilation: 9
+    filter:
+      enabled: true
+      min_rectangularity: 0.3197709821586621
+      min_extent: 0.2235023620230256
+      min_edge_density: 0.024655697993049897
+      min_shadow_support: 0.00789492015942582
+      max_vegetation_overlap: 0.38281242790442516
+      min_support_score: 0.44001017090958094
+      max_aspect_ratio: 8.0
+      shadow_ring_kernel: 9
+experiments:
+  no_plot: true
+  parameter_study:
+    max_samples: 120
+    sigma_values:
+    - 0.5
+    - 1.0
+    - 1.5
+    - 2.0
+    - 2.5
+    - 3.0
+    cliplimit_values:
+    - 1.0
+    - 1.5
+    - 2.0
+    - 2.5
+    - 3.0
+    weight_values:
+    - 0.3
+    - 0.4
+    - 0.5
+    - 0.6
+    - 0.7
+    color_weight_values:
+    - 0.0
+    - 0.1
+    - 0.2
+    - 0.3
+    - 0.5
+    - 0.8
+    - 1.0
+    edge_weight_values:
+    - 0.0
+    - 0.1
+    - 0.15
+    - 0.25
+    - 0.4
+    edge_detector_values:
+    - canny
+    - sobel
+    - both
+    block_size_values:
+    - 15
+    - 25
+    - 35
+    - 45
+    - 55
+    c_values:
+    - 4
+    - 8
+    - 12
+    - 16
+    - 20
+  ablation:
+    max_samples: 200
+  monte_carlo:
+    optimization_split: val
+    fallback_split: train
+    evaluation_split: test
+    max_samples: 120
+    evaluation_max_samples: null
+    num_trials: 60
+    top_k: 10
+    seed: 42
+    search_space:
+      use_filter_options:
+      - true
+      - false
+      include_auto_sigma: true
+      auto_sigma_probability: 0.15
+      filter_sigma_range:
+      - 0.5
+      - 3.0
+      use_clahe_options:
+      - true
+      - false
+      clahe_modes:
+      - adaptive
+      - fixed
+      clahe_clip_range:
+      - 1.0
+      - 3.0
+      clahe_tile_options:
+      - - 8
+        - 8
+      - - 16
+        - 16
+      - - 32
+        - 32
+      radiometric_options:
+      - true
+      - false
+      radiometric_methods:
+      - quantile
+      - histogram
+      radiometric_channels:
+      - bgr
+      - luminance
+      radiometric_quantile_options:
+      - 32
+      - 64
+      - 128
+      use_canny_options:
+      - true
+      - false
+      edge_detectors:
+      - canny
+      - sobel
+      - both
+      canny_percentile_range:
+      - 85.0
+      - 97.0
+      edge_dilation_options:
+      - 0
+      - 1
+      edge_weight_range:
+      - 0.0
+      - 0.5
+      fusion_methods:
+      - weighted
+      - max
+      - diff_only
+      - diff_canny_xor_and
+      multiscale_options:
+      - true
+      - false
+      multiscale_level_options:
+      - 1
+      - 2
+      - 3
+      multiscale_weight_decay_range:
+      - 0.45
+      - 0.85
+      diff_weight_range:
+      - 0.3
+      - 0.8
+      color_weight_range:
+      - 0.0
+      - 1.0
+      difference_methods:
+      - combined
+      - madi
+      madi_window_range:
+      - 15
+      - 55
+      madi_color_weight_range:
+      - 0.0
+      - 0.75
+      threshold_methods:
+      - otsu
+      - adaptive
+      - hybrid
+      - kimura
+      block_size_range:
+      - 15
+      - 55
+      threshold_C_range:
+      - 4
+      - 20
+      kimura_k_range:
+      - 0.05
+      - 0.35
+      closing_kernel_options:
+      - 3
+      - 5
+      - 7
+      opening_kernel_options:
+      - 1
+      - 3
+      - 5
+      min_area_range:
+      - 0
+      - 200
+      auto_area_options:
+      - false
+      fill_holes_options:
+      - true
+      - false
+      vegetation_options:
+      - true
+      - false
+      vegetation_suppression_range:
+      - 0.15
+      - 0.65
+      building_prior_options:
+      - true
+      - false
+      building_prior_strength_range:
+      - 0.15
+      - 0.55
+      building_filter_options:
+      - true
+      - false
+      building_min_rectangularity_range:
+      - 0.25
+      - 0.55
+      building_min_extent_range:
+      - 0.15
+      - 0.35
+      building_min_edge_density_range:
+      - 0.01
+      - 0.05
+      building_min_shadow_support_range:
+      - 0.002
+      - 0.02
+      building_max_vegetation_overlap_range:
+      - 0.25
+      - 0.6
+      building_min_support_score_range:
+      - 0.2
+      - 0.55

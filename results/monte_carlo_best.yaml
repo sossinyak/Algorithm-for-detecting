@@ -1,0 +1,64 @@
+optimization_split: train
+evaluation_split: test
+best_trial: 0
+base_optimization_f1: 0.22073006251900748
+best_optimization_f1: 0.22073006251900748
+base_evaluation_f1: 0.20215442322938104
+best_evaluation_f1: 0.20215442322938104
+best_params:
+  diff_weight: 0.6894981772890645
+  color_weight: 1.0
+  difference_method: combined
+  madi_window_size: 31
+  madi_color_weight: 0.35
+  use_filter: false
+  filter_sigma: null
+  gaussian_max_sigma: 3.0
+  use_clahe: false
+  clahe_mode: adaptive
+  clahe_clip_limit: 2.0
+  clahe_tile_grid_size:
+  - 16
+  - 16
+  use_radiometric_normalization: false
+  radiometric_method: quantile
+  radiometric_channels: bgr
+  radiometric_quantiles: 64
+  use_canny: false
+  canny_percentile: 90.0
+  edge_detector: canny
+  edge_weight: 0.0
+  edge_dilation_iterations: 1
+  fusion_method: diff_only
+  use_multiscale: true
+  multiscale_levels: 3
+  multiscale_weight_decay: 0.6556891480761657
+  block_size: 55
+  threshold_C: 18.0
+  kimura_k: 0.18883980967805475
+  threshold_method: hybrid
+  closing_kernel: 7
+  opening_kernel: 3
+  min_area: 137
+  auto_area: false
+  fill_holes: false
+  min_rectangularity: null
+  use_vegetation_suppression: true
+  exg_threshold: 0.08
+  exg_min_green: 0.18
+  vegetation_kernel: 3
+  vegetation_suppression_factor: 0.21988420547697843
+  use_building_prior: true
+  building_prior_strength: 0.34115090960949834
+  building_edge_kernel: 9
+  shadow_percentile: 25.0
+  shadow_dilation: 9
+  use_building_filter: true
+  building_min_rectangularity: 0.3197709821586621
+  building_min_extent: 0.2235023620230256
+  building_min_edge_density: 0.024655697993049897
+  building_min_shadow_support: 0.00789492015942582
+  building_max_vegetation_overlap: 0.38281242790442516
+  building_min_support_score: 0.44001017090958094
+  building_max_aspect_ratio: 8.0
+  building_shadow_ring_kernel: 9
