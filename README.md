@@ -126,11 +126,4 @@ python src/experiments/evaluate_zscore_pca_cva.py --data-root data --split test
 - `results/full_protocol/error_analysis/*_error_summary.csv` - типы ошибок.
 - `results/full_protocol/research_report.html` - итоговый HTML-отчет рядом с результатами полного протокола.
 - `results/full_protocol/stage_visualization/` - промежуточные карты Adaptive PCA-CVA для выбранных test-патчей.
-- `docs/research_report.html` - копия HTML-отчета для просмотра и демонстрации.
-- `docs/project_description.md` - краткое описание проекта.
-
-## Описание 
-
-Краткая справка по датасетам, методам, протоколу и актуальным результатам
-лежит в `docs/project_description.md`.
-Готовый HTML-отчет с таблицами и графиками лежит в `docs/research_report.html`.
+- `results/full_protocol/research_report.html` - HTML-отчет.
